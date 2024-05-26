@@ -8,7 +8,7 @@ pipelineJob('First') {
           remote {
             url('https://github.com/manusmtp/dslmanu.git')
           }
-          branch('*/master')
+          branch('*/main')
         }
       }
       lightweight()
