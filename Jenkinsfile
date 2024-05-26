@@ -1,4 +1,4 @@
-pipelinejob{
+pipelineJob{
 
     job('first job')
     {
