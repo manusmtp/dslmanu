@@ -1,5 +1,10 @@
-job('example') {
-  steps {
-    shell('echo Hello World!')
-  }
+job('generated-job-1') {
+parameters {
+stringParam('DEPLOY_URI', '...', '...')
+}
+steps {
+groovyCommand(readFileFromWorkspace('stepscript.groovy')) {
+prop('DEPLOY_URI', '$DEPLOY_URI')
+}
+}
 }
