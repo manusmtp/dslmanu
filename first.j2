@@ -5,8 +5,12 @@ job('example') {
        
 
     booleanParam('Select OS', true)
-        choiceParam('Os', ['Linux (default)', 'Windows', 'MAC'])
+    choiceParam('Os', ['Linux (default)', 'Windows', 'MAC'])
 }
+
+scm {
+      git('https://github.com/manusmtp/dslmanu','dev')
+    }
 }
 
 
