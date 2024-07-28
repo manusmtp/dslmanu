@@ -4,7 +4,7 @@ job('example-in-devBracnh'){
         choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
        
 
-    booleanParam('Select OS', true)
+    booleanParam('SelectOS', true)
     choiceParam('Os', ['Linux (default)', 'Windows', 'MAC'])
 }
 
@@ -17,6 +17,7 @@ scm {
 
         echo 'Hello World'
         echo 'Running SCript'
+        echo ${OS}
     """)
 
     )
