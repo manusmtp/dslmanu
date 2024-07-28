@@ -2,5 +2,20 @@ job('example') {
     parameters {
         booleanParam('FLAG', true)
         choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
+
+         activeChoiceReactiveParam('Select any choice') {
+            description('Allows user choose from multiple choices')
+            filterable()
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+                fallbackScript('"fallback choice"')
+            }
+            referencedParameter('BOOLEAN-PARAM-1')
+            referencedParameter('BOOLEAN-PARAM-2')
     }
+
+    
 }
+
+
