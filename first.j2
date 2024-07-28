@@ -5,7 +5,7 @@ job('example-in-devBracnh'){
        
 
     booleanParam('SelectOS', true)
-    choiceParam('Os', ['Linux (default)', 'Windows', 'MAC'])
+    choiceParam('os', ['Linux (default)', 'Windows', 'MAC'])
 }
 
 
@@ -16,8 +16,9 @@ job('example-in-devBracnh'){
                     shell("""
                         echo 'Hello World'
                         echo 'Running SCript'
-                        echo ${params.Os}
                     """)
+
+                    shell('echo value is :: $os')
                 }
     
 }
