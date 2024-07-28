@@ -16,6 +16,7 @@ job('example-in-devBracnh'){
                     shell("""
                         echo 'Hello World'
                         echo 'Running SCript'
+                        echo ${params.Os}
                     """)
                 }
     
