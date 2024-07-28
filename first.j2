@@ -13,13 +13,14 @@ scm {
     }
 
 
-    steps("""
 
-        echo 'Hello World'
-        echo 'Running SCript'
-        echo ${OS}
-    """)
-
+                steps{
+                    shell("""
+                        echo 'Hello World'
+                        echo 'Running SCript'
+                        echo ${OS}
+                    """)
+                }
     
 }
 
