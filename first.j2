@@ -11,6 +11,15 @@ job('example-in-devBracnh'){
 scm {
       git('https://github.com/manusmtp/dslmanu','dev')
     }
+
+
+    steps("""
+
+        echo 'Hello World'
+        echo 'Running SCript'
+    """)
+
+    )
 }
 
 
