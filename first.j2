@@ -6,18 +6,10 @@ job('example-in-devBracnh'){
 
     booleanParam('SelectOS', true)
     choiceParam('os', ['Linux (default)', 'Windows', 'MAC'])
+    fileParam('myfile', 'upload a file')
 
 
-    listView('project-A') {
-    columns {
-        status()
-        weather()
-        name()
-        lastSuccess()
-        lastFailure()
-        lastDuration()
-        buildButton()
-    }
+ 
 }
 }
 
@@ -28,10 +20,10 @@ job('example-in-devBracnh'){
                 steps{
                     shell("""
                         echo 'Hello World'
-                        echo 'Running SCript'
+                        cat  "$env:myfile"
                     """)
 
-                    shell('echo value is :: $env:project-A')
+                  
                 }
     
 }
