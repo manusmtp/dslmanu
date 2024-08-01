@@ -1,13 +1,13 @@
-pipelineJob {
+pipeline {
     agent any
     parameters {
-        choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Choose the environment')
+        string name: 'name', description: 'heaven' , defaultValue: 'val1'
     }
     stages {
         stage('Print Choice Parameter') {
             steps {
                 script {
-                    echo "Selected Environment: $ENVIRONMENT"
+                    echo "Selected Environment: $name"
                 }
             }
         }
