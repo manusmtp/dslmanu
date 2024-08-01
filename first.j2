@@ -6,6 +6,19 @@ job('example-in-devBracnh'){
 
     booleanParam('SelectOS', true)
     choiceParam('os', ['Linux (default)', 'Windows', 'MAC'])
+
+
+    listView('project-A') {
+    columns {
+        status()
+        weather()
+        name()
+        lastSuccess()
+        lastFailure()
+        lastDuration()
+        buildButton()
+    }
+}
 }
 
 
@@ -18,7 +31,7 @@ job('example-in-devBracnh'){
                         echo 'Running SCript'
                     """)
 
-                    shell('echo value is :: $os')
+                    shell('echo value is :: $env:os')
                 }
     
 }
