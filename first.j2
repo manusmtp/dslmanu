@@ -21,7 +21,7 @@ job('example-in-devBracnh'){
                 steps{
                     shell("""
                         echo 'Hello World'
-                        echo  'HEllo "$param.os"
+                        echo  'HEllo "{$params.par1}"
                     """)
 
                   
