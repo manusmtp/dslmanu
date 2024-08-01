@@ -6,7 +6,8 @@ job('example-in-devBracnh'){
 
         booleanParam('SelectOS', true)
         choiceParam('os', ['Linux (default)', 'Windows', 'MAC'])
-        fileParam('myfile', 'upload a file')
+       stringParam('par1', 'default_value', 'Description of the parameter')
+    
 
 
  
@@ -20,7 +21,7 @@ job('example-in-devBracnh'){
                 steps{
                     shell("""
                         echo 'Hello World'
-                        echo  "${myfile}"
+                        echo  "$par1"
                     """)
 
                   
