@@ -5,10 +5,9 @@ pipeline {
     }
     stages {
         stage('Print Choice Parameter') {
-            steps {
-                script {
+            steps{
                     echo "Selected Environment: $name"
-                }
+                
             }
         }
     }
