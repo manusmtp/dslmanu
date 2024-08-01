@@ -1,39 +1,15 @@
-job('example-in-devBracnh'){
+pipeline {
+    agent any
     parameters {
-        booleanParam('FLAG', true)
-        choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
-       
-
-        booleanParam('SelectOS', true)
-        choiceParam('os', ['Linux (default)', 'Windows', 'MAC'])
-        stringParam('par1', 'default_value', 'Description of the parameter')
-    
-
-
- 
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Choose the environment')
     }
-
-
-
-
-    stages{
-
-            stage('params'){
-                                            steps{
-                                                    script{
-                                                shell("""
-                                                    echo 'Hello World'
-                                                    echo  'HEllo "{$params.par1}"
-                                                """)
-                                                }
-
-                                            
-                                            }
+    stages {
+        stage('Print Choice Parameter') {
+            steps {
+                script {
+                    echo "Selected Environment: ${params.ENVIRONMENT}"
+                }
             }
-
+        }
     }
 }
-    
-
-
-
