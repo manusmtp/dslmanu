@@ -16,17 +16,20 @@ job('example-in-devBracnh'){
 
 
 
-     stage{
+     stages{
 
-                steps{
-                    shell("""
-                        echo 'Hello World'
-                        echo  'HEllo "{$params.par1}"
-                    """)
+            stage('params'){
+                                            steps{
+                                                shell("""
+                                                    echo 'Hello World'
+                                                    echo  'HEllo "{$params.par1}"
+                                                """)
 
-                  
-                }
-        }
+                                            
+                                            }
+            }
+
+    }
     
 }
 
