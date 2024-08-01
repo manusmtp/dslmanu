@@ -7,7 +7,7 @@ pipeline {
         stage('Print Choice Parameter') {
             steps {
                 script {
-                    echo "Selected Environment: ${params.ENVIRONMENT}"
+                    echo "Selected Environment: $ENVIRONMENT"
                 }
             }
         }
