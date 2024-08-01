@@ -11,26 +11,29 @@ job('example-in-devBracnh'){
 
 
  
-     }
+    }
 
 
 
 
-     stages{
+    stages{
 
             stage('params'){
                                             steps{
+                                                    script{
                                                 shell("""
                                                     echo 'Hello World'
                                                     echo  'HEllo "{$params.par1}"
                                                 """)
+                                                }
 
                                             
                                             }
             }
 
     }
-    
 }
+    
+
 
 
