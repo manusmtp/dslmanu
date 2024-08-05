@@ -12,10 +12,7 @@ pipelineJob('example-pipeline-job-with-parameters') {
                 pipeline {
                     agent any
 
-                    parameters {
-                        string(name: 'SOME_STRING', defaultValue: 'default value', description: 'This is a string parameter.')
-                        file(name: 'SOME_FILE', description: 'This is a file parameter.')
-                    }
+                   
 
                     stages {
                         stage('Print Parameters') {
