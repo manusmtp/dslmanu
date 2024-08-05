@@ -1,22 +1,8 @@
-pipelineJob {
-    agent any
+job('example-file-upload-job') {
     parameters {
-        file(name: 'UPLOAD_FILE', description: 'Select a file to upload')
+        fileParam('UPLOAD_FILE', 'Select a file to upload')
     }
-    stages {
-        stage('Print File Contents') {
-            steps {
-                script {
-                    // Check if the file parameter is provided
-                    if (params.UPLOAD_FILE) {
-                        // Read and print the file contents
-                        def fileContent = readFile file: params.UPLOAD_FILE
-                        echo "File Contents:\n${fileContent}"
-                    } else {
-                        echo "No file uploaded."
-                    }
-                }
-            }
-        }
+    steps {
+        shell('echo "Uploaded file name: ${UPLOAD_FILE}"')
     }
 }
