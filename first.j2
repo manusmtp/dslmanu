@@ -1,44 +1,29 @@
-pipelineJob('example-pipeline-job-with-parameters') {
-    description('An example pipeline job with string and file parameters.')
-
+pipelineJob('example-job') {
+    description('A job that accepts a file parameter and prints the filename')
     parameters {
-        stringParam('SOME_STRING', 'default value', 'This is a string parameter.')
-        fileParam('SOME_FILE', 'This is a file parameter.')
+        fileParam('FILE_PARAM', 'Upload your file here')
     }
-
     definition {
         cps {
             script('''
                 pipeline {
                     agent any
-
-                   
-
                     stages {
-                        stage('Print Parameters') {
+                        stage('Print Filename') {
                             steps {
                                 script {
-                                    echo "The value of SOME_STRING is: ${params.SOME_STRING}"
-                                    echo "The value of SOME_STRING is: ${params.SOME_FILE.name}"
-                                    def filePath = params.SOME_FILE
-                                    if (params.SOME_FILE) {
-                                        echo "The file ${filePath} exists."
+                                    def fileParam = params.FILE_PARAM
+                                    if (fileParam) {
+                                        echo "Uploaded filename: ${fileParam}"
                                     } else {
-                                        echo "The file ${filePath} does not exist."
+                                        echo "No file was uploaded."
                                     }
                                 }
                             }
                         }
                     }
-
-                    post {
-                        always {
-                            archiveArtifacts artifacts: '**/*', allowEmptyArchive: true
-                        }
-                    }
                 }
-            '''.stripIndent())
-            sandbox()
+            ''')
         }
     }
 }
