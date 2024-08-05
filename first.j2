@@ -1,29 +1,22 @@
-pipelineJob('testple-job') {
-    description('A job that accepts a file parameter and prints the filename')
+pipeline {
+    agent any
     parameters {
-        fileParam('FILE_PARAM', 'Upload your file here')
+        file(name: 'UPLOAD_FILE', description: 'Select a file to upload')
     }
-    definition {
-        cps {
-            script('''
-                pipeline {
-                    agent any
-                    stages {
-                        stage('Print Filename') {
-                            steps {
-                                script {
-                                    def fileParam = params.FILE_PARAM
-                                    if (fileParam) {
-                                        echo "Uploaded filename: ${fileParam}"
-                                    } else {
-                                        echo "No file was uploaded."
-                                    }
-                                }
-                            }
-                        }
+    stages {
+        stage('Print File Contents') {
+            steps {
+                script {
+                    // Check if the file parameter is provided
+                    if (params.UPLOAD_FILE) {
+                        // Read and print the file contents
+                        def fileContent = readFile file: params.UPLOAD_FILE
+                        echo "File Contents:\n${fileContent}"
+                    } else {
+                        echo "No file uploaded."
                     }
                 }
-            ''')
+            }
         }
     }
 }
