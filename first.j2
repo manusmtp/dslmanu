@@ -1,16 +1,47 @@
-pipeline {
-    agent any
+pipelineJob('example-pipeline-job-with-parameters') {
+    description('An example pipeline job with string and file parameters.')
+
     parameters {
-        stringParam(name: 'name', description: 'heaven' , defaultValue: 'val1')
-        fileParam(name: 'manu1' ,  description: 'poda venna'  )
-        
+        stringParam('SOME_STRING', 'default value', 'This is a string parameter.')
+        fileParam('SOME_FILE', 'This is a file parameter.')
     }
-    stages {
-        stage('Print Choice Parameter') {
-            steps{
-                    echo "Selected Environment: $name"
-                
-            }
+
+    definition {
+        cps {
+            script('''
+                pipeline {
+                    agent any
+
+                    parameters {
+                        string(name: 'SOME_STRING', defaultValue: 'default value', description: 'This is a string parameter.')
+                        file(name: 'SOME_FILE', description: 'This is a file parameter.')
+                    }
+
+                    stages {
+                        stage('Print Parameters') {
+                            steps {
+                                script {
+                                    echo "The value of SOME_STRING is: ${params.SOME_STRING}"
+                                    
+                                    def filePath = "${params.SOME_FILE}"
+                                    if (fileExists(filePath)) {
+                                        echo "The file ${filePath} exists."
+                                    } else {
+                                        echo "The file ${filePath} does not exist."
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    post {
+                        always {
+                            archiveArtifacts artifacts: '**/*', allowEmptyArchive: true
+                        }
+                    }
+                }
+            '''.stripIndent())
+            sandbox()
         }
     }
 }

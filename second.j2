@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    parameters {
+        stringParam(name: 'name', description: 'heaven' , defaultValue: 'val1')
+        fileParam(name: 'manu1' ,  description: 'poda venna'  )
+        
+    }
+    stages {
+        stage('Print Choice Parameter') {
+            steps{
+                    echo "Selected Environment: $name"
+                
+            }
+        }
+    }
+}
