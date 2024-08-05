@@ -20,7 +20,7 @@ pipelineJob('example-pipeline-job-with-parameters') {
                                 script {
                                     echo "The value of SOME_STRING is: ${params.SOME_STRING}"
                                     
-                                    def filePath = "${params.SOME_FILE}"
+                                    def filePath = params.SOME_FILE
                                     if (fileExists(filePath)) {
                                         echo "The file ${filePath} exists."
                                     } else {
